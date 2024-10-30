@@ -14,19 +14,19 @@ def personal_sum(numbers):
 
 def calculate_average(numbers):
     try:
-        if not hasattr(numbers, '__iter__'):
-            raise TypeError('В numbers записан некорректный тип данных')
-
         total, incorrect_data = personal_sum(numbers)
         count = len(numbers) - incorrect_data
 
-        average = total / count if count > 0 else 0
-        return average
+        if count == 0:
+            return 0
+
+        return total / count
 
     except ZeroDivisionError:
         return 0
+
     except TypeError:
-        print('е')
+        print('В numbers записан некорректный тип данный')
         return None
 
 
