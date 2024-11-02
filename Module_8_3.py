@@ -9,17 +9,18 @@ class IncorrectCarNumbers(Exception):
 class Car:
     def __init__(self, model, vin, numbers):
         self.model = model
-        self.__vin = vin
-        self.__numbers = numbers
 
-        self.__is_valid_vin(self.__vin)
-        self.__is_valid_numbers(self.__numbers)
+        if self.__is_valid_vin(vin):
+            self.__vin = vin
+        if self.__is_valid_numbers(numbers):
+            self.__numbers = numbers
+
 
     def __is_valid_vin(self, vin_number):
         if not isinstance(vin_number, int):
-            raise IncorrectVinNumber('Некорректнй тип vin number')
+            raise IncorrectVinNumber('Некорректнй тип vin номер')
         if vin_number < 1000000 or vin_number > 9999999:
-            raise IncorrectVinNumber('Неверный диапазон для vin number')
+            raise IncorrectVinNumber('Неверный диапазон для vin номера')
         return True
 
     def __is_valid_numbers(self, numbers):
